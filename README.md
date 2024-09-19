@@ -1,6 +1,6 @@
 # virtual-term
 
-VirtualTerm is created to simulate a terminal,handle the special character such as '\r','\b', "\033[1D".
+VirtualTerm is created to simulate a terminal,handle the special character such as '\r','\b'.
 Write a string into VirtualTerm, you will know what would your string be like if you output it to stdout.
 
 ## Getting Started
@@ -56,7 +56,10 @@ func ExampleVirtualTerm() {
 
 ```
 
-
+## support
+* '\r'
+* '\n'
+* '\b'
 
 
 
