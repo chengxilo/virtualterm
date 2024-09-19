@@ -1,6 +1,8 @@
 package virtualterm
 
-import "strings"
+import (
+	"strings"
+)
 
 // VirtualTerm this is created to simulate a terminal,handle the special character such as '\r','\b', "\033[1D".
 // For example: if you input "cute\rhat", the result of String() would be "hate"
@@ -30,6 +32,28 @@ func NewOptions(opts ...Option) VirtualTerm {
 func NewDefault() VirtualTerm {
 	return NewOptions()
 }
+
+//func (vt *VirtualTerm) HandleEscape(p []byte,idx int) {
+//	reg,_ := regexp.Compile("^\033\\[([0-9;?]*)([A-Za-z])")
+//	sub := reg.FindSubmatch(p[idx:])
+//	fmt.Print(sub)
+//	//paramBytes := sub[1]
+//	cmdBytes := sub[2]
+//
+//	// choose the behavior according to bytes
+//	cmdChar := rune(cmdBytes[0])
+//	if len(cmdBytes) != 1 {
+//		return
+//	}
+//
+//	switch cmdChar {
+//	case 'A':
+//		vt.curLine = max(0,vt.curLine - )
+//	case 'B':
+//	case 'C':
+//	case 'D':
+//	}
+//}
 
 // Write implements the io.Writer interface
 func (vt *VirtualTerm) Write(p []byte) (n int, err error) {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"virtualterm"
+	"github.com/chengxilo/virtualterm"
 )
 
 func main() {

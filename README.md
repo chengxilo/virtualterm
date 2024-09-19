@@ -11,7 +11,7 @@ package main
 
 import (
     "fmt"
-    "virtualterm"
+    "github.com/chengxilo/virtualterm"
 )
 
 func main() {
@@ -33,9 +33,9 @@ package test
 
 import (
     "fmt"
+    "github.com/chengxilo/virtualterm"
     "github.com/stretchr/testify/assert"
     "testing"
-    "virtualterm"
 )
 
 func TestVirtualTerm(t *testing.T) {
@@ -53,7 +53,6 @@ func ExampleVirtualTerm() {
     // Output:
     // virtual-terminal
 }
-
 ```
 
 ## support

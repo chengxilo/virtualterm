@@ -1,4 +1,4 @@
-module virtualterm
+module github.com/chengxilo/virtualterm
 
 go 1.22.3
 

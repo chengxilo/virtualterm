@@ -2,9 +2,9 @@ package test
 
 import (
 	"fmt"
+	"github.com/chengxilo/virtualterm"
 	"github.com/stretchr/testify/assert"
 	"testing"
-	"virtualterm"
 )
 
 func TestVirtualTerm(t *testing.T) {
@@ -78,3 +78,18 @@ func TestBackspace(t *testing.T) {
 		vt.Clear()
 	}
 }
+
+//func TestEscape(t *testing.T) {
+//	tests := []struct {
+//		input string
+//		output string
+//	}{
+//		{"\033[Hhelloworld", "\033[H"},
+//		{"\033[2Jhello","\033[2J"},
+//		{"\033[?25lasdfasdf","\033[?25l"},
+//	}
+//	for _,te := range tests {
+//		newDefault := virtualterm.NewDefault()
+//		newDefault.HandleEscape([]byte(te.input),0)
+//	}
+//}
