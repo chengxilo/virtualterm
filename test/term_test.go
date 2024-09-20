@@ -9,16 +9,14 @@ import (
 
 func TestVirtualTerm(t *testing.T) {
 	str := "hello\rvirtuaa\bl-terminal"
-	vt := virtualterm.NewDefault()
-	vt.Write([]byte(str))
-	assert.Equal(t, vt.String(), "virtual-terminal")
+	ns, _ := virtualterm.Process(str)
+	assert.Equal(t, ns, "virtual-terminal")
 }
 
 func ExampleVirtualTerm() {
 	str := "hello\rvirtuaa\bl-terminal"
-	vt := virtualterm.NewDefault()
-	vt.Write([]byte(str))
-	fmt.Print(vt.String())
+	ns, _ := virtualterm.Process(str)
+	fmt.Print(ns)
 	// Output:
 	// virtual-terminal
 }
