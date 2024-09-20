@@ -232,3 +232,13 @@ func emptyContent() [][]rune {
 	runes[0] = append(runes[0], ' ')
 	return runes
 }
+
+// Process get the output directly without explicitly create a virtual terminal
+func Process(input string) (string, error) {
+	vt := NewDefault()
+	_, err := vt.WriteString(input)
+	if err != nil {
+		return "", err
+	}
+	return vt.String(), err
+}
