@@ -35,7 +35,10 @@ func TestCarriageReturn(t *testing.T) {
 		{"pie\rapple", "apple"},
 	}
 	for _, te := range tests {
-		vt.Write([]byte(te.input))
+		_, err := vt.Write([]byte(te.input))
+		if err != nil {
+			t.Fatal(err)
+		}
 		actual := vt.String()
 		assert.Equal(t, te.output, actual)
 		vt.Clear()
@@ -79,17 +82,27 @@ func TestBackspace(t *testing.T) {
 	}
 }
 
-//func TestEscape(t *testing.T) {
-//	tests := []struct {
-//		input string
-//		output string
-//	}{
-//		{"\033[Hhelloworld", "\033[H"},
-//		{"\033[2Jhello","\033[2J"},
-//		{"\033[?25lasdfasdf","\033[?25l"},
-//	}
-//	for _,te := range tests {
-//		newDefault := virtualterm.NewDefault()
-//		newDefault.HandleEscape([]byte(te.input),0)
-//	}
-//}
+func TestControlSequenceIntroducer(t *testing.T) {
+	vt := virtualterm.NewDefault()
+	tests := []struct {
+		input  string
+		output string
+	}{
+		{"hello\033[Hworl", "worlo"},
+		{"\033[123*", ""},
+		{"\033[123helloworld", "elloworld"},
+		{"\033[323[21helloworld", "21helloworld"},
+		{"\033helloworld", "elloworld"},
+		{"\033[2Bhello\033[Hworld", "world\n\nhello"},
+		{"hello\033[3Dworld\033[2CTo be or not to be\033[3Bsecond hello\033[2Aworld\033[4Bbalabala",
+			"heworld  To be or not to be\n                                       world\n\n                           second hello\n\n                                            balabala"},
+	}
+	for _, te := range tests {
+		_, err := vt.Write([]byte(te.input))
+		if err != nil {
+			t.Fatal(err)
+		}
+		assert.Equal(t, te.output, vt.String())
+		vt.Clear()
+	}
+}

@@ -1,9 +1,24 @@
 # virtual-term
 
-VirtualTerm is created to simulate a terminal,handle the special character such as '\r','\b'.
+ VirtualTerm is created to simulate a terminal,handle the special character such as '\r','\b'.
 Write a string into VirtualTerm, you will know what would your string be like if you output it to stdout.
 
-## Getting Started
+
+## Now Support 😎
+* `\b` backspace
+* `\r` carriage return
+* `\n` feed line
+* `ESC[#A`	moves cursor up # lines
+* `ESC[#B`	moves cursor down # lines
+* `ESC[#C`	moves cursor right # columns
+* `ESC[#D`	moves cursor left # columns
+* `ESC[#H`  moves cursor to home position
+
+***WARNING:*** if you try to write not supported ESC to it, the output may can not be predicted
+
+
+
+## Getting Started 🤔
 
 example
 ```go
@@ -55,10 +70,12 @@ func ExampleVirtualTerm() {
 }
 ```
 
-## support
-* '\r'
-* '\n'
-* '\b'
+# Contribution 🎉
 
+Pull requests are welcome. Feel free to...
 
-
+- Revise documentation
+- Add new features
+- Fix bugs
+- Suggest improvements
+- or whatever you want...
