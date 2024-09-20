@@ -16,7 +16,11 @@ Write a string into VirtualTerm, you will know what would your string be like if
 
 ***WARNING:*** if you try to write not supported ESC to it, the output may can not be predicted
 
-
+## install🛸
+use go get to
+```shell
+go get -u github.com/chengxilo/virtualterm
+```
 
 ## Getting Started 🤔
 
