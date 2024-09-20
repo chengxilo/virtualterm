@@ -1,6 +1,6 @@
 module github.com/chengxilo/virtualterm
 
-go 1.22.3
+go 1.22
 
 require github.com/stretchr/testify v1.9.0
 
@@ -11,4 +11,4 @@ require (
 )
 
 // do not use them, they are not stable or loss of function
-retract [v0.0.1,v1.0.1]
+retract [v0.0.1, v1.0.1]
