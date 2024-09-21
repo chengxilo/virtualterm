@@ -5,6 +5,12 @@ Write a string into VirtualTerm, you will know what would your string be like if
 
 
 ## Now Support 😎
+
+### Character Encoding
+* ASCII
+* UTF-8
+
+### Control Characters
 * `\b` backspace
 * `\r` carriage return
 * `\n` feed line
