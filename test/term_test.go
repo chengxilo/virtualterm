@@ -51,7 +51,7 @@ func TestCarriageReturn(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		actual := vt.String()
+		actual, _ := vt.String()
 		assert.Equal(t, te.output, actual)
 		vt.Clear()
 	}
@@ -74,7 +74,7 @@ func TestNewLine(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		actual := vt.String()
+		actual, _ := vt.String()
 		assert.Equal(t, te.output, actual)
 		vt.Clear()
 	}
@@ -95,7 +95,7 @@ func TestBackspace(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		actual := vt.String()
+		actual, _ := vt.String()
 		assert.Equal(t, te.output, actual)
 		vt.Clear()
 	}
@@ -107,6 +107,7 @@ func TestCSI(t *testing.T) {
 		input    string
 		expected string
 	}{
+		{"123\r嗨", "嗨3"},
 		{"\033[123*", ""},
 		{"你好\r\033[4C啊", "你好啊"},
 		{"你好\r\033[C", "你好"},
@@ -136,7 +137,7 @@ func TestCSI(t *testing.T) {
 		if err != nil {
 			t.Fatal(err, i)
 		}
-		actual := vt.String()
+		actual, _ := vt.String()
 		if actual != te.expected {
 			log.Print("actual: "+actual+"expected: ", te.expected, "test index: ", i)
 			t.Fail()
@@ -150,6 +151,7 @@ func TestInvalidInput(t *testing.T) {
 	tests := []struct {
 		input string
 	}{
+		{"你好\ba"},
 		{"我是\b猫"},
 		{"我是\033[1D猫"},
 		{"我是\bhero"},
@@ -157,10 +159,10 @@ func TestInvalidInput(t *testing.T) {
 		{"\bレ\033[Dモン"},
 	}
 	for _, te := range tests {
-		_, err := vt.WriteString(te.input)
-		if !errors.Is(err, virtualterm.ErrNonDetermistics) {
-			t.Logf("error is not expected")
-			t.Fail()
+		vt.WriteString(te.input)
+		if _, err := vt.String(); !errors.Is(err, virtualterm.ErrNonDeterministic) {
+			t.Fatal(err)
 		}
+		vt.Clear()
 	}
 }
